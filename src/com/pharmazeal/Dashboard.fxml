@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmazeal.DashboardController">
+   <children>
+      <AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="1115.0">
+         <children>
+            <BorderPane layoutX="-4.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="45.0" prefWidth="200.0" styleClass="semi-top-form" stylesheets="@dashboard.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="2.0" prefHeight="35.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FontAwesomeIconView glyphName="STETHOSCOPE" layoutX="14.0" layoutY="28.0" size="1.5EM" />
+                              <Label layoutX="41.0" layoutY="13.0" text="PharmaZeal">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="close" layoutX="1045.0" layoutY="-1.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="58.0" styleClass="close" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="CLOSE" size="1.2em" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="minimize" layoutX="984.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="58.0" styleClass="minimize">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="MINUS" size="1.2em" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="555.0" prefWidth="215.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="8.0" layoutY="-5.0" prefHeight="560.0" prefWidth="215.0" stylesheets="@dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Line endX="149.0" layoutX="37.0" layoutY="172.0" startX="-18.5" stroke="WHITE" styleClass="nav-btn" />
+                              <Button fx:id="dashboard_btn" layoutX="13.0" layoutY="199.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="189.0" styleClass="nav-btn" stylesheets="@dashboard.css" text="   Dashboard">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="DASHBOARD" size="1.5EM" />
+                                 </graphic>
+                              </Button>
+                              <FontAwesomeIconView fill="#fcfcfc" glyphName="USER_MD" layoutX="65.0" layoutY="96.0" size="8em" />
+                              <Button fx:id="addMedicine_btn" layoutX="13.0" layoutY="234.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="189.0" styleClass="nav-btn" stylesheets="@dashboard.css" text="   Inventory">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="TRUCK" size="1.5EM" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="purchase_btn" layoutX="17.0" layoutY="304.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="189.0" styleClass="nav-btn" stylesheets="@dashboard.css" text="  Potential Risks">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="ASTERISK" size="1.5EM" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="logout" layoutX="18.0" layoutY="514.0" mnemonicParsing="false" onAction="#logout">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="SIGN_OUT" />
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="logout-btn" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </Button>
+                              <Label layoutX="56.0" layoutY="519.0" prefHeight="17.0" prefWidth="55.0" text="Sign Out " textFill="WHITE" />
+                              <Button fx:id="customer_btn" layoutX="17.0" layoutY="269.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="189.0" styleClass="nav-btn" stylesheets="@dashboard.css" text="  Customers">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="USERS" size="1.5EM" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <styleClass>
+                              <String fx:value="nav-form" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </AnchorPane>
+                        <Label fx:id="username" alignment="CENTER" layoutX="15.0" layoutY="142.0" prefHeight="20.0" prefWidth="179.0" text="RVR" textAlignment="JUSTIFY" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="74.0" layoutY="112.0" text="Welcome" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="dashboard_form" layoutX="14.0" layoutY="14.0" prefHeight="555.0" prefWidth="885.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="264.0" prefWidth="862.0" stylesheets="@dashboard.css">
+                                 <children>
+                                    <AreaChart fx:id="dashboard_chart" layoutX="5.0" layoutY="10.0" prefHeight="339.0" prefWidth="843.0" title="Sales Data Chart">
+                                      <xAxis>
+                                        <CategoryAxis prefHeight="0.0" prefWidth="762.0" side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis side="LEFT" styleClass="white-bg" stylesheets="@dashboard.css" />
+                                      </yAxis>
+                                    </AreaChart>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                              <AnchorPane layoutX="10.0" layoutY="381.0" prefHeight="160.0" prefWidth="865.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="36.0" layoutY="23.0" prefHeight="114.0" prefWidth="228.0" styleClass="card">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="CHECK" layoutX="14.0" layoutY="81.0" size="5EM" text="" />
+                                          <Label layoutX="74.0" layoutY="83.0" text="Available Medicines" textFill="WHITE">
+                                             <font>
+                                                <Font name="Tahoma" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="dashboard_availableMed" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="126.0" layoutY="13.0" prefHeight="23.0" prefWidth="90.0" text="0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="319.0" layoutY="23.0" prefHeight="114.0" prefWidth="228.0" styleClass="card">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="MONEY" layoutX="14.0" layoutY="81.0" size="5EM" text="" />
+                                          <Label layoutX="92.0" layoutY="80.0" text="Total Sales" textFill="WHITE">
+                                             <font>
+                                                <Font name="Tahoma" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="dashboard_totalIncome" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="88.0" layoutY="13.0" prefHeight="23.0" prefWidth="128.0" text="£ 0.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="595.0" layoutY="23.0" prefHeight="114.0" prefWidth="228.0" styleClass="card">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="81.0" size="5EM" text="" />
+                                          <Label layoutX="74.0" layoutY="83.0" text="Total Users" textFill="WHITE">
+                                             <font>
+                                                <Font name="Tahoma" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="dashboard_totalCustomers" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="126.0" layoutY="13.0" prefHeight="23.0" prefWidth="90.0" text="0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="addMedicines_form" layoutX="310.0" layoutY="168.0" prefHeight="555.0" prefWidth="885.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="266.0" prefWidth="867.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="63.0" layoutY="28.0" text="Drug ID:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_drugid" layoutX="128.0" layoutY="24.0" prefHeight="27.0" prefWidth="111.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="38.0" layoutY="65.0" prefHeight="18.0" prefWidth="87.0" text="Drug Name:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_drugname" layoutX="127.0" layoutY="61.0" prefHeight="27.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="47.0" layoutY="101.0" prefHeight="18.0" prefWidth="71.0" text="Condition:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_condition" layoutX="126.0" layoutY="97.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="37.0" layoutY="172.0" prefHeight="18.0" prefWidth="88.0" text="Expiry Date:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="37.0" layoutY="209.0" prefHeight="18.0" prefWidth="81.0" text="Total Stock:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="139.0" prefHeight="18.0" prefWidth="49.0" text="Price:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_unitprice1" layoutX="125.0" layoutY="132.0" prefHeight="27.0" prefWidth="164.0" promptText="£0.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <AnchorPane layoutX="709.0" layoutY="16.0" prefHeight="184.0" prefWidth="127.0">
+                                       <styleClass>
+                                          <String fx:value="shadow" />
+                                          <String fx:value="white-bg" />
+                                       </styleClass>
+                                       <children>
+                                          <ImageView fx:id="addMedicines_imageView" fitHeight="184.0" fitWidth="127.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                    <Button fx:id="addMedicines_importBtn" layoutX="718.0" layoutY="218.0" mnemonicParsing="false" onAction="#addMedicineImportImage" prefHeight="27.0" prefWidth="109.0" styleClass="add-btn" text="Import">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="addMedicines_addBtn" layoutX="347.0" layoutY="217.0" mnemonicParsing="false" onAction="#addMedicinesAdd" prefHeight="31.0" prefWidth="72.0" styleClass="add-btn" text="Add" />
+                                    <Button fx:id="addMedicines_updateBtn" layoutX="433.0" layoutY="217.0" mnemonicParsing="false" onAction="#addMedicineUpdate" prefHeight="31.0" prefWidth="75.0" styleClass="update-btn" text="Update" />
+                                    <Button fx:id="addMedicines_clearBtn" layoutX="520.0" layoutY="217.0" mnemonicParsing="false" onAction="#addMedicineReset" prefHeight="31.0" prefWidth="68.0" styleClass="clear-btn" text="Clear" />
+                                    <Button fx:id="addMedicines_deleteBtn" layoutX="599.0" layoutY="217.0" mnemonicParsing="false" onAction="#addMedicineDelete" prefHeight="31.0" prefWidth="68.0" styleClass="delete-btn" text="Delete" />
+                                    <TextField fx:id="addMedicines_stock" layoutX="125.0" layoutY="204.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="367.0" layoutY="25.0" text="ID Check :">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_idcheck" layoutX="437.0" layoutY="21.0" prefHeight="29.0" prefWidth="49.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="369.0" layoutY="74.0" text="Avaialbility :-">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="370.0" layoutY="114.0" text="Tunstall:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_avail_tunstall" layoutX="437.0" layoutY="110.0" prefHeight="29.0" prefWidth="49.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="520.0" layoutY="115.0" text="Hanley:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_avail_hanley" layoutX="576.0" layoutY="111.0" prefHeight="29.0" prefWidth="49.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="374.0" layoutY="156.0" text="Fenton:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_avail_fenton" layoutX="437.0" layoutY="152.0" prefHeight="29.0" prefWidth="49.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="510.0" layoutY="160.0" text="Longton:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_avail_longton" layoutX="578.0" layoutY="156.0" prefHeight="29.0" prefWidth="49.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="473.0" layoutY="74.0" prefHeight="18.0" prefWidth="100.0" text="Stoke on Trent:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addMedicines_avail_stock" layoutX="576.0" layoutY="70.0" prefHeight="29.0" prefWidth="49.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <DatePicker fx:id="addMedicines_expiry" layoutX="125.0" layoutY="170.0" prefHeight="27.0" prefWidth="165.0" styleClass="textfield" />
+                                 </children></AnchorPane>
+                              <AnchorPane layoutX="14.0" layoutY="296.0" prefHeight="251.0" prefWidth="867.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField fx:id="addMedicines_search" layoutX="18.0" layoutY="13.0" onKeyTyped="#addMedicineSearch" prefHeight="28.0" prefWidth="241.0" promptText="Search" styleClass="search" visible="false">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <FontAwesomeIconView fill="#464242" glyphName="SEARCH" layoutX="25.0" layoutY="33.0" size="1.5em" />
+                                    <TableView fx:id="addMedicines_tableView1" layoutX="18.0" layoutY="52.0" onKeyPressed="#addMedicineSelect" onMouseClicked="#addMedicineSelect" prefHeight="189.0" prefWidth="839.0" stylesheets="@dashboard.css">
+                                      <columns>
+                                        <TableColumn fx:id="addMedicines_col_drugID" prefWidth="97.0" text="Drug ID" />
+                                          <TableColumn fx:id="addMedicines_col_drugName" prefWidth="220.0" text="Drug Name" />
+                                          <TableColumn fx:id="addMedicines_col_condition" prefWidth="144.0" text="Condition" />
+                                          <TableColumn fx:id="addMedicines_col_unitPrice" prefWidth="107.0" text="Unit Price" />
+                                          <TableColumn fx:id="addMedicines_col_expiry" prefWidth="169.0" text="Expiry Date" />
+                                          <TableColumn fx:id="addMedicines_col_stock" prefWidth="100.0" text="Stock" />
+                                      </columns>
+                                    </TableView>
+                                    <TextField fx:id="addMedicines_search" layoutX="18.0" layoutY="13.0" onKeyTyped="#addMedicineSearch" prefHeight="28.0" prefWidth="241.0" promptText="Search" styleClass="search">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="addCustomer_form" layoutX="368.0" layoutY="190.0" prefHeight="555.0" prefWidth="885.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="9.0" layoutY="314.0" prefHeight="240.0" prefWidth="867.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="63.0" layoutY="73.0" text="First Name:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addCustomer_firstname" layoutX="147.0" layoutY="68.0" prefHeight="29.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="50.0" layoutY="110.0" prefHeight="18.0" prefWidth="92.0" text="Middle Name:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addCustomer_midname" layoutX="147.0" layoutY="103.0" prefHeight="27.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="77.0" layoutY="143.0" prefHeight="18.0" prefWidth="61.0" text=" Surame:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addCustomer_surname" layoutX="147.0" layoutY="135.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="56.0" layoutY="175.0" prefHeight="18.0" prefWidth="87.0" text="Date of Birth:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="46.0" layoutY="212.0" prefHeight="18.0" prefWidth="99.0" text="House Number:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="addCustomer_addBtn" layoutX="716.0" layoutY="36.0" mnemonicParsing="false" onAction="#addCustomersAdd" prefHeight="31.0" prefWidth="72.0" styleClass="add-btn" text="Add" />
+                                    <Button fx:id="addCustomer_updateBtn" layoutX="716.0" layoutY="87.0" mnemonicParsing="false" onAction="#addCustomersUpdate" prefHeight="31.0" prefWidth="74.0" styleClass="update-btn" text="Update" />
+                                    <Button fx:id="addCustomer_clearBtn" layoutX="715.0" layoutY="139.0" mnemonicParsing="false" onAction="#addCustomersReset" prefHeight="31.0" prefWidth="75.0" styleClass="clear-btn" text="Clear" />
+                                    <Button fx:id="addCustomer_deleteBtn" layoutX="715.0" layoutY="189.0" mnemonicParsing="false" onAction="#addCustomersDelete" prefHeight="31.0" prefWidth="75.0" styleClass="delete-btn" text="Delete" />
+                                    <DatePicker fx:id="addCustomer_DOB" layoutX="148.0" layoutY="169.0" prefHeight="27.0" prefWidth="163.0" styleClass="textfield" />
+                                    <TextField fx:id="addCustomer_houseno" layoutX="149.0" layoutY="207.0" prefHeight="29.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="365.0" layoutY="63.0" text="Street Name:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addCustomer_streetname" layoutX="461.0" layoutY="59.0" prefHeight="29.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="382.0" layoutY="102.0" prefHeight="18.0" prefWidth="69.0" text="Post code:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addCustomer_postcode" layoutX="461.0" layoutY="96.0" prefHeight="27.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="407.0" layoutY="137.0" prefHeight="18.0" prefWidth="42.0" text=" City:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addCustomer_city" layoutX="460.0" layoutY="129.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="396.0" layoutY="175.0" prefHeight="18.0" prefWidth="57.0" text="County:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addCustomer_county" layoutX="460.0" layoutY="170.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <Label layoutX="390.0" layoutY="212.0" prefHeight="18.0" prefWidth="61.0" text="Country:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addCustomer_country" layoutX="458.0" layoutY="207.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                    <TextField fx:id="addCustomer_customerid" layoutX="147.0" layoutY="28.0" prefHeight="27.0" prefWidth="80.0" styleClass="textfield" />
+                                    <Label layoutX="55.0" layoutY="34.0" prefHeight="18.0" prefWidth="90.0" text="Customer ID:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="391.0" layoutY="31.0" text="Alergies:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addCustomer_allergies" layoutX="460.0" layoutY="26.0" prefHeight="29.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="10.0" layoutY="7.0" prefHeight="279.0" prefWidth="867.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField fx:id="addCustomer_search" layoutX="18.0" layoutY="13.0" onKeyTyped="#addCustomersSearch" prefHeight="28.0" prefWidth="241.0" promptText="Search" styleClass="search">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <FontAwesomeIconView fill="#464242" glyphName="SEARCH" layoutX="25.0" layoutY="33.0" size="1.5em" />
+                                    <TableView fx:id="addCustomer_tableView" layoutX="4.0" layoutY="52.0" onKeyPressed="#addCustomersSelect" onMouseClicked="#addCustomersSelect" prefHeight="247.0" prefWidth="857.0" stylesheets="@dashboard.css">
+                                       <columns>
+                                          <TableColumn fx:id="addCustomer_col_firstname" prefWidth="87.0" text="First Name" />
+                                          <TableColumn fx:id="addCustomer_col_midname" minWidth="0.0" prefWidth="0.0" text="Middle Name" />
+                                          <TableColumn fx:id="addCustomer_col_surname" prefWidth="77.0" text="Surname" />
+                                          <TableColumn fx:id="addCustomer_col_DOB" prefWidth="62.0" text="DOB" />
+                                          <TableColumn fx:id="addCustomer_col_houseno" prefWidth="108.0" text="House Number" />
+                                          <TableColumn fx:id="addCustomer_col_streetname" prefWidth="108.0" text="Street Name" />
+                                          <TableColumn fx:id="addCustomer_col_postcode" prefWidth="87.0" text="Postcode" />
+                                          <TableColumn fx:id="addCustomer_col_city" prefWidth="90.0" text="City" />
+                                          <TableColumn fx:id="addCustomer_col_county" prefWidth="60.0" text="County" />
+                                          <TableColumn fx:id="addCustomer_col_country" prefWidth="73.0" text="Country" />
+                                          <TableColumn fx:id="addCustomer_col_id" prefWidth="36.0" text="ID" />
+                                          <TableColumn fx:id="addCustomer_col_allergies" prefWidth="67.0" text="Allergies" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="purchase_form" layoutX="343.0" layoutY="203.0" prefHeight="555.0" prefWidth="885.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="5.0" layoutY="4.0" prefHeight="546.0" prefWidth="876.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="expired_tableView" layoutX="14.0" layoutY="40.0" prefHeight="222.0" prefWidth="846.0">
+                                      <columns>
+                                        <TableColumn fx:id="expired_col_drugid" prefWidth="79.0" text="Drug ID" />
+                                          <TableColumn fx:id="expired_col_drugname" prefWidth="213.0" text="Drug Name" />
+                                          <TableColumn fx:id="expired_col_condition" prefWidth="179.0" text="Condition" />
+                                          <TableColumn fx:id="expired_col_price" prefWidth="106.0" text="Unit Price" />
+                                          <TableColumn fx:id="expired_col_expiry" prefWidth="124.0" text="Expiry Date" />
+                                          <TableColumn fx:id="expired_col_stock" prefWidth="142.0" text="In Stock" />
+                                      </columns>
+                                    </TableView>
+                                    <Label layoutX="18.0" layoutY="14.0" text="Expired Medicines">
+                                       <font>
+                                          <Font name="Tahoma" size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="18.0" layoutY="270.0" text="Medicines low on Stock">
+                                       <font>
+                                          <Font name="Tahoma" size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="lowStock_tableView" layoutX="14.0" layoutY="307.0" prefHeight="222.0" prefWidth="845.0">
+                                       <columns>
+                                          <TableColumn fx:id="lowStock_col_drugid1" prefWidth="79.0" text="Drug ID" />
+                                          <TableColumn fx:id="lowStock_col_drugname" prefWidth="213.0" text="Drug Name" />
+                                          <TableColumn fx:id="lowStock_col_condition" prefWidth="179.0" text="Condition" />
+                                          <TableColumn fx:id="lowStock_col_unitprice" prefWidth="106.0" text="Unit Price" />
+                                          <TableColumn fx:id="lowStock_col_expiry" prefWidth="124.0" text="Expiry Date" />
+                                          <TableColumn fx:id="lowStock_col_stock" prefWidth="139.0" text="In Stock" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="purchase_form1" layoutX="10.0" layoutY="10.0" prefHeight="555.0" prefWidth="885.0" visible="false">
+                           <children>
+                              <AnchorPane layoutX="5.0" layoutY="4.0" prefHeight="546.0" prefWidth="876.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="expired_tableView1" layoutX="14.0" layoutY="40.0" prefHeight="222.0" prefWidth="846.0">
+                                       <columns>
+                                          <TableColumn fx:id="expired_col_drugid1" prefWidth="79.0" text="Drug ID" />
+                                          <TableColumn fx:id="expired_col_drugname1" prefWidth="213.0" text="Drug Name" />
+                                          <TableColumn fx:id="expired_col_condition1" prefWidth="179.0" text="Condition" />
+                                          <TableColumn fx:id="expired_col_price1" prefWidth="106.0" text="Unit Price" />
+                                          <TableColumn fx:id="expired_col_expiry1" prefWidth="124.0" text="Expiry Date" />
+                                          <TableColumn fx:id="expired_col_stock1" prefWidth="142.0" text="In Stock" />
+                                       </columns>
+                                    </TableView>
+                                    <Label layoutX="18.0" layoutY="14.0" text="Expired Medicines">
+                                       <font>
+                                          <Font name="Tahoma" size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="18.0" layoutY="270.0" text="Medicines low on Stock">
+                                       <font>
+                                          <Font name="Tahoma" size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="lowStock_tableView1" layoutX="14.0" layoutY="307.0" prefHeight="222.0" prefWidth="845.0">
+                                       <columns>
+                                          <TableColumn fx:id="lowStock_col_drugid11" prefWidth="79.0" text="Drug ID" />
+                                          <TableColumn fx:id="lowStock_col_drugname1" prefWidth="213.0" text="Drug Name" />
+                                          <TableColumn fx:id="lowStock_col_condition1" prefWidth="179.0" text="Condition" />
+                                          <TableColumn fx:id="lowStock_col_unitprice1" prefWidth="106.0" text="Unit Price" />
+                                          <TableColumn fx:id="lowStock_col_expiry1" prefWidth="124.0" text="Expiry Date" />
+                                          <TableColumn fx:id="lowStock_col_stock1" prefWidth="139.0" text="In Stock" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
