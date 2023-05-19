@@ -683,32 +683,32 @@ public class DashboardController implements Initializable {
 		addMedicines_imageView.setImage(null);
 	}
 
-	// Medicine Type list
-
-	private String[] addMedicineListT = { "Hydrocodone", "Antibiotics", "Metformin", "Losartan", "Albutarol" };
-
-	public void addMedicineListType() {
-		List<String> listT = new ArrayList<>();
-		for (String data : addMedicineListT) {
-			listT.add(data);
-		}
-
-		ObservableList listData = FXCollections.observableArrayList(listT);
-		addMedicines_type.setItems(listData);
-
-	}
-
-	private String[] addMedicineStatus = { "Available", "Not Available" };
-
-	public void addMedicineListStatus() {
-		List<String> listS = new ArrayList<>();
-		for (String data : addMedicineStatus) {
-			listS.add(data);
-		}
-
-		ObservableList listData = FXCollections.observableArrayList(listS);
-		addMedicines_status.setItems(listData);
-	}
+//	// Medicine Type list
+//
+//	private String[] addMedicineListT = { "Hydrocodone", "Antibiotics", "Metformin", "Losartan", "Albutarol" };
+//
+//	public void addMedicineListType() {
+//		List<String> listT = new ArrayList<>();
+//		for (String data : addMedicineListT) {
+//			listT.add(data);
+//		}
+//
+//		ObservableList listData = FXCollections.observableArrayList(listT);
+//		addMedicines_type.setItems(listData);
+//
+//	}
+//
+//	private String[] addMedicineStatus = { "Available", "Not Available" };
+//
+//	public void addMedicineListStatus() {
+//		List<String> listS = new ArrayList<>();
+//		for (String data : addMedicineStatus) {
+//			listS.add(data);
+//		}
+//
+//		ObservableList listData = FXCollections.observableArrayList(listS);
+//		addMedicines_status.setItems(listData);
+//	}
 
 	// Image for medicine - choosing image
 	public void addMedicineImportImage() {
@@ -729,6 +729,7 @@ public class DashboardController implements Initializable {
 
 	}
 
+	// Getting data of drugs from DB
 	public ObservableList<DrugData> addMedicinesListData() {
 		String sql = "SELECT * FROM drugs";
 		ObservableList<DrugData> listData = FXCollections.observableArrayList();
@@ -812,6 +813,8 @@ public class DashboardController implements Initializable {
 		addMedicines_tableView1.setItems(sortList);
 
 	}
+	
+	// Populating Data on textfields while medicine is selected in TableView
 
 	public void addMedicineSelect() {
 
@@ -1090,80 +1093,80 @@ public class DashboardController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+//
+//	public void purchaseType() {
+//		String sql = "SELECT * FROM medicine WHERE status='Available' ";
+//		connect = Database.connectDB();
+//		try {
+//			ObservableList listData = FXCollections.observableArrayList();
+//			prepare = connect.prepareStatement(sql);
+//			result = prepare.executeQuery();
+//			while (result.next()) {
+//				listData.add(result.getString("type"));
+//			}
+//			purchase_type.setItems(listData);
+//			purchaseMedicineId();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
 
-	public void purchaseType() {
-		String sql = "SELECT * FROM medicine WHERE status='Available' ";
-		connect = Database.connectDB();
-		try {
-			ObservableList listData = FXCollections.observableArrayList();
-			prepare = connect.prepareStatement(sql);
-			result = prepare.executeQuery();
-			while (result.next()) {
-				listData.add(result.getString("type"));
-			}
-			purchase_type.setItems(listData);
-			purchaseMedicineId();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public void purchaseMedicineId() {
-		String sql = "SELECT * FROM medicine WHERE type = '" + purchase_type.getSelectionModel().getSelectedItem()
-				+ "'";
-		connect = Database.connectDB();
-		try {
-			ObservableList listData = FXCollections.observableArrayList();
-			prepare = connect.prepareStatement(sql);
-			result = prepare.executeQuery();
-
-			while (result.next()) {
-				listData.add(result.getString("medicine_id"));
-			}
-			purchase_medicineID.setItems(listData);
-			purchaseBrand();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void purchaseBrand() {
-		String sql = "SELECT * FROM medicine WHERE medicine_id = '"
-				+ purchase_medicineID.getSelectionModel().getSelectedItem() + "'";
-		connect = Database.connectDB();
-		try {
-			ObservableList listData = FXCollections.observableArrayList();
-			prepare = connect.prepareStatement(sql);
-			result = prepare.executeQuery();
-
-			while (result.next()) {
-				listData.add(result.getString("brand"));
-			}
-			purchase_brand.setItems(listData);
-			purchaseProductName();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void purchaseProductName() {
-		String sql = "SELECT * FROM medicine WHERE brand = '" + purchase_brand.getSelectionModel().getSelectedItem()
-				+ "'";
-		connect = Database.connectDB();
-		try {
-			ObservableList listData = FXCollections.observableArrayList();
-			prepare = connect.prepareStatement(sql);
-			result = prepare.executeQuery();
-
-			while (result.next()) {
-				listData.add(result.getString("productName"));
-			}
-			purchase_productName.setItems(listData);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public void purchaseMedicineId() {
+//		String sql = "SELECT * FROM medicine WHERE type = '" + purchase_type.getSelectionModel().getSelectedItem()
+//				+ "'";
+//		connect = Database.connectDB();
+//		try {
+//			ObservableList listData = FXCollections.observableArrayList();
+//			prepare = connect.prepareStatement(sql);
+//			result = prepare.executeQuery();
+//
+//			while (result.next()) {
+//				listData.add(result.getString("medicine_id"));
+//			}
+//			purchase_medicineID.setItems(listData);
+//			purchaseBrand();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	public void purchaseBrand() {
+//		String sql = "SELECT * FROM medicine WHERE medicine_id = '"
+//				+ purchase_medicineID.getSelectionModel().getSelectedItem() + "'";
+//		connect = Database.connectDB();
+//		try {
+//			ObservableList listData = FXCollections.observableArrayList();
+//			prepare = connect.prepareStatement(sql);
+//			result = prepare.executeQuery();
+//
+//			while (result.next()) {
+//				listData.add(result.getString("brand"));
+//			}
+//			purchase_brand.setItems(listData);
+//			purchaseProductName();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	public void purchaseProductName() {
+//		String sql = "SELECT * FROM medicine WHERE brand = '" + purchase_brand.getSelectionModel().getSelectedItem()
+//				+ "'";
+//		connect = Database.connectDB();
+//		try {
+//			ObservableList listData = FXCollections.observableArrayList();
+//			prepare = connect.prepareStatement(sql);
+//			result = prepare.executeQuery();
+//
+//			while (result.next()) {
+//				listData.add(result.getString("productName"));
+//			}
+//			purchase_productName.setItems(listData);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	public void defaultNav() {
 		dashboard_btn.setStyle("-fx-background-color:#8a418c");

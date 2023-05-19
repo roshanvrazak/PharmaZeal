@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmazeal.AddCustomerController">
+   <children>
+      <AnchorPane fx:id="addCustomer_form" prefHeight="555.0" prefWidth="885.0">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="265.0" prefHeight="241.0" prefWidth="867.0" stylesheets="@dashboard.css">
+               <styleClass>
+                  <String fx:value="white-bg" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <Label layoutX="63.0" layoutY="73.0" text="First Name:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addCustomer_firstname" layoutX="147.0" layoutY="68.0" prefHeight="29.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                  <Label layoutX="50.0" layoutY="110.0" prefHeight="18.0" prefWidth="92.0" text="Middle Name:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addCustomer_midname" layoutX="147.0" layoutY="103.0" prefHeight="27.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                  <Label layoutX="77.0" layoutY="143.0" prefHeight="18.0" prefWidth="61.0" text=" Surame:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addCustomer_surname" layoutX="147.0" layoutY="135.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                  <Label layoutX="56.0" layoutY="175.0" prefHeight="18.0" prefWidth="87.0" text="Date of Birth:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="46.0" layoutY="212.0" prefHeight="18.0" prefWidth="99.0" text="House Number:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="addCustomer_addBtn" layoutX="717.0" layoutY="95.0" mnemonicParsing="false" onAction="#addCustomersAdd" prefHeight="31.0" prefWidth="72.0" styleClass="add-btn" text="Add" />
+                  <Button fx:id="addCustomer_clearBtn" layoutX="715.0" layoutY="139.0" mnemonicParsing="false" onAction="#addCustomersReset" prefHeight="31.0" prefWidth="75.0" styleClass="clear-btn" text="Clear" />
+                  <DatePicker fx:id="addCustomer_DOB" layoutX="148.0" layoutY="169.0" prefHeight="27.0" prefWidth="163.0" styleClass="textfield" />
+                  <TextField fx:id="addCustomer_houseno" layoutX="149.0" layoutY="207.0" prefHeight="29.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                  <Label layoutX="365.0" layoutY="63.0" text="Street Name:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addCustomer_streetname" layoutX="461.0" layoutY="59.0" prefHeight="29.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                  <Label layoutX="382.0" layoutY="102.0" prefHeight="18.0" prefWidth="69.0" text="Post code:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addCustomer_postcode" layoutX="461.0" layoutY="96.0" prefHeight="27.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                  <Label layoutX="407.0" layoutY="137.0" prefHeight="18.0" prefWidth="42.0" text=" City:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addCustomer_city" layoutX="460.0" layoutY="129.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                  <Label layoutX="396.0" layoutY="175.0" prefHeight="18.0" prefWidth="57.0" text="County:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addCustomer_county" layoutX="460.0" layoutY="170.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                  <Label layoutX="390.0" layoutY="212.0" prefHeight="18.0" prefWidth="61.0" text="Country:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addCustomer_country" layoutX="458.0" layoutY="207.0" prefHeight="27.0" prefWidth="164.0" styleClass="textfield" stylesheets="@dashboard.css" />
+                  <TextField fx:id="addCustomer_customerid" layoutX="147.0" layoutY="28.0" prefHeight="27.0" prefWidth="80.0" styleClass="textfield" />
+                  <Label layoutX="55.0" layoutY="34.0" prefHeight="18.0" prefWidth="90.0" text="Customer ID:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="391.0" layoutY="31.0" text="Alergies:">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addCustomer_allergies" layoutX="460.0" layoutY="26.0" prefHeight="29.0" prefWidth="160.0" styleClass="textfield" stylesheets="@dashboard.css" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="24.0" prefHeight="229.0" prefWidth="867.0" stylesheets="@dashboard.css">
+               <styleClass>
+                  <String fx:value="white-bg" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <TextField fx:id="addCustomer_search" layoutX="18.0" layoutY="13.0" onKeyTyped="#addCustomersSearch" prefHeight="28.0" prefWidth="241.0" promptText="Search" styleClass="search">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <FontAwesomeIconView fill="#464242" glyphName="SEARCH" layoutX="25.0" layoutY="33.0" size="1.5em" />
+                  <TableView fx:id="addCustomer_tableView" layoutX="4.0" layoutY="52.0" onKeyPressed="#addCustomersSelect" onMouseClicked="#addCustomersSelect" prefHeight="180.0" prefWidth="857.0" stylesheets="@dashboard.css">
+                     <columns>
+                        <TableColumn fx:id="addCustomer_col_firstname" prefWidth="87.0" text="First Name" />
+                        <TableColumn fx:id="addCustomer_col_midname" minWidth="0.0" prefWidth="0.0" text="Middle Name" />
+                        <TableColumn fx:id="addCustomer_col_surname" prefWidth="77.0" text="Surname" />
+                        <TableColumn fx:id="addCustomer_col_DOB" prefWidth="62.0" text="DOB" />
+                        <TableColumn fx:id="addCustomer_col_houseno" prefWidth="108.0" text="House Number" />
+                        <TableColumn fx:id="addCustomer_col_streetname" prefWidth="108.0" text="Street Name" />
+                        <TableColumn fx:id="addCustomer_col_postcode" prefWidth="87.0" text="Postcode" />
+                        <TableColumn fx:id="addCustomer_col_city" prefWidth="90.0" text="City" />
+                        <TableColumn fx:id="addCustomer_col_county" prefWidth="60.0" text="County" />
+                        <TableColumn fx:id="addCustomer_col_country" prefWidth="73.0" text="Country" />
+                        <TableColumn fx:id="addCustomer_col_id" prefWidth="36.0" text="ID" />
+                        <TableColumn fx:id="addCustomer_col_allergies" prefWidth="67.0" text="Allergies" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

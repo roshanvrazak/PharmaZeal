@@ -10,8 +10,9 @@ public class SalesData {
 	Double salesPrice;
 	Integer salesQty;
 	Double salesTotal;
+	String salesIDCheck;
 	public SalesData(Integer salesSessionId, Integer salesDrugId, String salesDrugName, Date salesExpiryDate,
-			Integer salesQty, Double salesPrice, Double salesTotal) {
+			Integer salesQty, Double salesPrice, Double salesTotal,String salesIDCheck) {
 		super();
 		this.salesSessionId = salesSessionId;
 		this.salesDrugId = salesDrugId;
@@ -20,6 +21,10 @@ public class SalesData {
 		this.salesQty = salesQty;
 		this.salesPrice = salesPrice;
 		this.salesTotal = salesTotal;
+		this.salesIDCheck=salesIDCheck;
+	}
+	public String getSalesIDCheck() {
+		return salesIDCheck;
 	}
 	public Integer getSalesSessionId() {
 		return salesSessionId;

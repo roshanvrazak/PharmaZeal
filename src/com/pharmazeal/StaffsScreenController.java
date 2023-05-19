@@ -1,5 +1,6 @@
 package com.pharmazeal;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -155,6 +156,9 @@ public class StaffsScreenController implements Initializable {
 	private Label cust_allergy_label;
 
 	@FXML
+	private Label cust_age;
+
+	@FXML
 	private Spinner<Integer> sale_quantity;
 
 	@FXML
@@ -253,8 +257,8 @@ public class StaffsScreenController implements Initializable {
 		if ((num - 1) < -1) {
 			return;
 		}
-		System.out.println("stock = "+drugData.getStk_avail());
-		System.out.println("tunstall= "+drugData.getTun_avail());
+//		System.out.println("stock = "+drugData.getStk_avail());
+//		System.out.println("tunstall= "+drugData.getTun_avail());
 		sales_avail_stock.setText(drugData.getStk_avail());
 		sales_avail_tunstall.setText(drugData.getTun_avail());
 		sales_avail_fenton.setText(drugData.getFen_avail());
@@ -540,6 +544,8 @@ public class StaffsScreenController implements Initializable {
 		salesSessionid();
 		String sql = "INSERT INTO sales (sessionid,drug_id,drug_name,expiry_date,quantity,price,total)"
 				+ " VALUES(?,?,?,?,?,?,?)";
+		// String drugIDCheckData= "select drug_id from sales where sessionid= (select
+		// max(sessionid) from sales)";
 		connect = Database.connectDB();
 
 		try {
@@ -568,6 +574,7 @@ public class StaffsScreenController implements Initializable {
 				totalP = (priceD * qty);
 
 				prepare.setDouble(7, totalP);
+				// prepare.setString(8, String.valueOf(d.getIdCheck()));
 				prepare.executeUpdate();
 
 				showRecepitdata();
@@ -669,6 +676,9 @@ public class StaffsScreenController implements Initializable {
 				alert.showAndWait();
 			} else {
 
+				// String IDCheck =
+				// recepit_tableView.getSelectionModel().getSelectedItem().getSalesIDCheck();
+
 				alert = new Alert(AlertType.CONFIRMATION);
 				alert.setHeaderText(null);
 				alert.setContentText("Are you sure?");
@@ -693,6 +703,7 @@ public class StaffsScreenController implements Initializable {
 					sales_total.setText("£0.0");
 					sales_amount.setText("");
 					sales_balance.setText("£0.0");
+					// Add resert code for Receipt Table view
 
 				}
 
@@ -719,7 +730,7 @@ public class StaffsScreenController implements Initializable {
 			while (result.next()) {
 				salesD = new SalesData(result.getInt("sessionid"), result.getInt("drug_id"),
 						result.getString("drug_name"), result.getDate("expiry_date"), result.getInt("quantity"),
-						result.getDouble("price"), result.getDouble("total"));
+						result.getDouble("price"), result.getDouble("total"), result.getString("check"));
 				listData.add(salesD);
 			}
 
@@ -808,13 +819,14 @@ public class StaffsScreenController implements Initializable {
 		}
 	}
 
+	int age = 0;
+
 	public void idCheck() {
 		System.out.println("inside id check");
 		String custId = cust_id_label.getText();
 		String sql = "select dob from customers where customer_id='" + custId + "'";
 		connect = Database.connectDB();
 
-		int age = 0;
 		try {
 			prepare = connect.prepareStatement(sql);
 			result = prepare.executeQuery();
@@ -835,38 +847,65 @@ public class StaffsScreenController implements Initializable {
 
 			}
 			String checkRequired = "";
+			cust_age.setText(Integer.toString(age));
 			if (age < 18) {
 
-				int drugId = recepit_col_drugid.getTableView().getSelectionModel().getSelectedItem().getSalesDrugId();
-				System.out.println("drugid=" + drugId);
+				System.out.println("inside less than 18");
+//
+//				System.out.println("drugid=" + drugId);
+
 				connect = Database.connectDB();
+
+				// String drugDetails = "select drug_id from sales where sessionid= (select
+				// max(sessionid) from sales)";
+
+				int drugId = recepit_col_drugid.getTableView().getSelectionModel().getSelectedItem().getSalesDrugId();
 				String query = "select id_check from drugs where drug_id='" + drugId + "'";
+				System.out.println(query);
 				try {
 
 					prepare = connect.prepareStatement(query);
 					result = prepare.executeQuery();
 					while (result.next()) {
-						checkRequired = result.getString("result");
+						checkRequired = result.getString("id_check");
 					}
+					System.out.println("check =" + checkRequired);
 
+					if (age < 18 && checkRequired.equals("Y")) {
+						System.out.println("inside age <18 and check =Y");
+						Alert alert;
+						alert = new Alert(AlertType.ERROR);
+						alert.setHeaderText(null);
+						alert.setContentText("ID Check Required!");
+						alert.showAndWait();
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
 			}
 
-			if (age < 18 && checkRequired.equals('Y')) {
-				Alert alert;
-				alert = new Alert(AlertType.ERROR);
-				alert.setHeaderText(null);
-				alert.setContentText("ID Check Required!");
-				alert.showAndWait();
-			}
-
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
+	}
+
+	public void handleButtonClick() {
+
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("AddCustomer.fxml"));
+
+			Scene scene = new Scene(fxmlLoader.load(), 900, 500);
+			Stage stage = new Stage();
+			stage.setTitle("Add New Customer");
+			stage.setScene(scene);
+			stage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
