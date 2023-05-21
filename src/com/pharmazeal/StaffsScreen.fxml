@@ -119,24 +119,24 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <Button layoutX="85.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleButtonClick" styleClass="update-btn" text="Add New Customer" />
+                                          <Button layoutX="67.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleButtonClick" styleClass="update-btn" text="Add New Customer" />
                                           <Button fx:id="salesPay_btn" layoutX="169.0" layoutY="486.0" mnemonicParsing="false" onAction="#salesPay" styleClass="add-btn" stylesheets="@application.css" text="Place Order" />
-                                          <Label layoutX="12.0" layoutY="52.0" prefHeight="18.0" prefWidth="110.0" text="Customer Name:">
+                                          <Label layoutX="20.0" layoutY="238.0" prefHeight="18.0" prefWidth="110.0" text="Customer Name:">
                                              <font>
                                                 <Font name="Tahoma" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="29.0" layoutY="90.0" prefHeight="18.0" prefWidth="88.0" text="Customer ID:">
+                                          <Label layoutX="37.0" layoutY="276.0" prefHeight="18.0" prefWidth="88.0" text="Customer ID:">
                                              <font>
                                                 <Font name="Tahoma" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="2.0" layoutY="128.0" prefHeight="18.0" prefWidth="123.0" text="Alleries/Conditions:">
+                                          <Label layoutX="10.0" layoutY="314.0" prefHeight="18.0" prefWidth="123.0" text="Alleries/Conditions:">
                                              <font>
                                                 <Font name="Tahoma" size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cust_name" layoutX="130.0" layoutY="48.0" onAction="#customersID" prefWidth="150.0" promptText="Choose" styleClass="textfield" />
+                                          <ComboBox fx:id="cust_name" layoutX="138.0" layoutY="234.0" onAction="#customersID" prefWidth="150.0" promptText="Choose" styleClass="textfield" />
                                           <Label fx:id="sales_total" layoutX="180.0" layoutY="386.0" onDragDetected="#customersID" prefHeight="21.0" prefWidth="94.0" text="0.0">
                                              <font>
                                                 <Font name="Tahoma" size="17.0" />
@@ -162,14 +162,27 @@
                                                 <Font name="Tahoma" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="cust_id_label" layoutX="125.0" layoutY="87.0" prefHeight="23.0" prefWidth="90.0" />
-                                          <Label fx:id="cust_allergy_label" layoutX="135.0" layoutY="126.0" prefHeight="23.0" prefWidth="90.0" />
-                                          <Label fx:id="cust_age" layoutX="135.0" layoutY="169.0" prefHeight="23.0" prefWidth="90.0" />
-                                          <Label layoutX="67.0" layoutY="171.0" prefHeight="18.0" prefWidth="63.0" text="Age:">
+                                          <Label fx:id="cust_id_label" layoutX="133.0" layoutY="273.0" prefHeight="23.0" prefWidth="90.0" />
+                                          <Label fx:id="cust_allergy_label" layoutX="143.0" layoutY="312.0" prefHeight="23.0" prefWidth="90.0" />
+                                          <Label fx:id="cust_age" layoutX="143.0" layoutY="355.0" prefHeight="23.0" prefWidth="90.0" />
+                                          <Label layoutX="75.0" layoutY="357.0" prefHeight="18.0" prefWidth="63.0" text="Age:">
                                              <font>
                                                 <Font name="Tahoma" size="14.0" />
                                              </font>
                                           </Label>
+                                          <TextField fx:id="purchase_searchCustomer" layoutX="25.0" layoutY="14.0" onAction="#customerSearchSales" onKeyTyped="#customerSearchSales" prefHeight="25.0" prefWidth="170.0" promptText="Search Customer" styleClass="search">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                          <FontAwesomeIconView fill="#464242" glyphName="SEARCH" layoutX="29.0" layoutY="32.0" size="1.5em" />
+                                          <TableView fx:id="CustomerTableView" layoutX="14.0" layoutY="46.0" onMouseClicked="#salesCustomersSelect" prefHeight="138.0" prefWidth="270.0">
+                                            <columns>
+                                              <TableColumn fx:id="cus_col_id" prefWidth="77.0" text="Cutomer ID" />
+                                              <TableColumn fx:id="cus_col_name" prefWidth="99.0" text="First Name" />
+                                                <TableColumn fx:id="cus_col_lastname" minWidth="0.0" prefWidth="92.0" text="Last Name" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </AnchorPane>
                                     <Label fx:id="txtDate" layoutX="353.0" layoutY="8.0" prefHeight="17.0" prefWidth="92.0" text="date">

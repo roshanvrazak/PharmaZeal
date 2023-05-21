@@ -565,7 +565,6 @@ public class DashboardController implements Initializable {
 
 	}
 
-
 	public void addMedicineUpdate() {
 
 		String uri = GetData.path;
@@ -813,7 +812,7 @@ public class DashboardController implements Initializable {
 		addMedicines_tableView1.setItems(sortList);
 
 	}
-	
+
 	// Populating Data on textfields while medicine is selected in TableView
 
 	public void addMedicineSelect() {
@@ -1247,6 +1246,8 @@ public class DashboardController implements Initializable {
 				} else if (predicateCustomersData.getFirst_name().toLowerCase().indexOf(searchKey) > -1) {
 					return true;
 				} else if (predicateCustomersData.getLast_name().toLowerCase().indexOf(searchKey) > -1) {
+					return true;
+				} else if (predicateCustomersData.getDob().toString().contains(searchKey)) {
 					return true;
 				} else
 					return false;

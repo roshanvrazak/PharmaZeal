@@ -12,8 +12,11 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -190,6 +193,12 @@ public class StaffsScreenController implements Initializable {
 
 	@FXML
 	private Label sales_balance;
+
+	@FXML
+	private TextField purchase_searchCustomer;
+
+	@FXML
+	private TextField CustomerName1;
 
 	private Connection connect;
 	private PreparedStatement prepare;
@@ -775,6 +784,166 @@ public class StaffsScreenController implements Initializable {
 //		salesAmount();
 	}
 
+	// ************ Searching Customer in Ponit of Sales
+	// *********************************************************************************************************
+
+	public ObservableList<CustomersData> CustomerListData() {
+		System.out.println("inside CustomerListData");
+		String sql = "SELECT * FROM customers";
+		ObservableList<CustomersData> listData = FXCollections.observableArrayList();
+
+		connect = Database.connectDB();
+
+		try {
+			prepare = connect.prepareStatement(sql);
+			result = prepare.executeQuery();
+			CustomersData customerData;
+
+			while (result.next()) {
+
+				customerData = new CustomersData(result.getInt("customer_id"), result.getString("first_name"),
+						result.getString("middle_name"), result.getString("last_name"), result.getDate("dob"),
+						result.getString("house_no"), result.getString("street_name"), result.getString("postcode"),
+						result.getString("city"), result.getString("county"), result.getString("country"),
+						result.getString("allergies"));
+
+				listData.add(customerData);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listData;
+	}
+
+	@FXML
+	private Label cust_name2;
+
+	@FXML
+	private ComboBox<CustomersData> cust_name3;
+
+	@FXML
+	private TableColumn<CustomersData, String> cus_col_id;
+
+	@FXML
+	private TableColumn<CustomersData, String> cus_col_name;
+
+	@FXML
+	private TableColumn<CustomersData, String> cus_col_lastname;
+	@FXML
+	private TableView<CustomersData> CustomerTableView;
+
+	private ObservableList<CustomersData> CustomerList = FXCollections.observableArrayList();
+
+	private TextField searchField;
+
+	public void customerSearchSales() {
+		System.out.println("inside  customerSearchSales");
+
+		CustomerList = CustomerListData();
+		FilteredList<CustomersData> filter = new FilteredList<>(CustomerList, e -> true);
+		purchase_searchCustomer.textProperty().addListener((Observable, oldValue, newValue) -> {
+			filter.setPredicate(predicateCustomersData -> {
+				if (newValue == null || newValue.isEmpty()) {
+					System.out.println("1");
+					return true;
+				}
+
+				String searchKey = newValue.toLowerCase();
+				// System.out.println(searchKey);
+
+//				if (predicateCustomersData.getFirst_name().toLowerCase().indexOf(searchKey) > -1) {
+//					System.out.println(predicateCustomersData.getFirst_name());
+//					return true;
+//				} 
+//				else 
+				if (predicateCustomersData.getCustomer_id().toString().contains(searchKey)) {
+					System.out.println(predicateCustomersData.getCustomer_id());
+					return true;
+				} else {
+					return false;
+				}
+			});
+
+		});
+		SortedList<CustomersData> sortList = new SortedList<>(filter);
+		sortList.comparatorProperty().bind(CustomerTableView.comparatorProperty());
+		CustomerTableView.setItems(sortList);
+		salesCustomerShowListData();
+
+//		//
+//		FilteredList<CustomersData> filter = new FilteredList<>(addCustomersList, e -> true);
+//		addCustomer_search.textProperty().addListener((Observable, oldValue, newValue) -> {
+//			filter.setPredicate(predicateCustomersData -> {
+//				if (newValue == null || newValue.isEmpty()) {
+//					return true;
+//				}
+//
+//				String searchKey = newValue.toLowerCase();
+//
+//				if (predicateCustomersData.getCustomer_id().toString().contains(searchKey)) {
+//					return true;
+//				} else if (predicateCustomersData.getFirst_name().toLowerCase().indexOf(searchKey) > -1) {
+//					return true;
+//				} else if (predicateCustomersData.getLast_name().toLowerCase().indexOf(searchKey) > -1) {
+//					return true;
+//				} else
+//					return false;
+//
+//			});
+//		});
+//		SortedList<CustomersData> sortList = new SortedList<>(filter);
+//		sortList.comparatorProperty().bind(addCustomer_tableView.comparatorProperty());
+//		addCustomer_tableView.setItems(sortList);
+
+		//
+	}
+
+	public void salesCustomerShowListData() {
+		System.out.println("inside salesCustomerShowListData");
+		CustomerList = CustomerListData();
+
+		cus_col_id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
+
+		cus_col_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
+
+		cus_col_lastname.setCellValueFactory(new PropertyValueFactory<>("first_name"));
+
+		CustomerTableView.setItems(CustomerList);
+
+	}
+
+	public void salesCustomersSelect() {
+		System.out.println("inside addCustomersSelect ");
+
+		CustomersData cusData = (CustomersData) CustomerTableView.getSelectionModel().getSelectedItem();
+		int num = CustomerTableView.getSelectionModel().getSelectedIndex();
+		if ((num - 1) < -1) {
+			return;
+		}
+		cust_id_label.setText(String.valueOf(cusData.getCustomer_id()));
+		cust_name.setPromptText(String.valueOf(cusData.getFirst_name()));
+		cust_allergy_label.setText(cusData.getAllergy());
+
+	}
+
+	private ObservableList<CustomersData> CustomersListInSales;
+
+	public void addCustomerShowListDataSales() {
+		CustomersListInSales = CustomerListData();
+
+		cus_col_id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
+
+		cus_col_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
+
+		cus_col_lastname.setCellValueFactory(new PropertyValueFactory<>("last_name"));
+
+		CustomerTableView.setItems(CustomersListInSales);
+
+	}
+
+	// ***************************************************************************************************
+
 	public void customersID() {
 		String sql = "SELECT * FROM customers";
 		connect = Database.connectDB();
@@ -922,6 +1091,7 @@ public class StaffsScreenController implements Initializable {
 		salesDisplayTotal();
 
 		availablilityShowListData();
+		// addCustomerShowListDataSales();
 
 	}
 
